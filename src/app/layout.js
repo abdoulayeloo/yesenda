@@ -1,6 +1,4 @@
 import { Playfair_Display, Inter } from "next/font/google";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -20,13 +18,16 @@ export const metadata = {
   description: "Boutique de vêtements féminins et créations sur mesure à Dakar.",
 };
 
+import Shell from "@/components/layout/Shell";
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Shell>{children}</Shell>
+        </CartProvider>
       </body>
     </html>
   );
