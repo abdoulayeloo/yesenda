@@ -48,4 +48,16 @@
   .title {
     font-size: 2.5rem;
   }
+  .section {
+    height: 80vh; /* Shorter hero on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
 }

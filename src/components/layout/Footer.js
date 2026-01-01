@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Instagram, MapPin, Phone } from 'lucide-react';
 import styles from './Footer.module.css';
 
@@ -6,10 +7,17 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.column}>
-          <h3>Yesanda</h3>
-          <p style={{ opacity: 0.8, lineHeight: 1.6 }}>
-            L&apos;Art du Sur-Mesure.<br />
+        <div className={styles.brand}>
+          <div style={{ position: 'relative', width: '150px', height: '80px', marginBottom: '1rem' }}>
+            <Image 
+              src="/images/logo.jpg" 
+              alt="Yesanda Logo" 
+              fill
+              style={{ objectFit: 'contain', objectPosition: 'left' }}
+            />
+          </div>
+          <p className={styles.mission}>
+            L&apos;élégance du sur-mesure au cœur de Dakar.
             Élégance simple et raffinée pour la femme moderne.<br />
             Créations uniques et Prêt-à-porter.
           </p>

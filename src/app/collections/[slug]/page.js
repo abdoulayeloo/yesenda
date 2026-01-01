@@ -3,6 +3,7 @@ import { urlFor } from '@/sanity/image';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import ProductCard from '@/components/product/ProductCard';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,6 +25,26 @@ async function getData(slug) {
   }`, { id: category._id });
 
   return { category, products };
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const category = await client.fetch(`*[_type == "category" && slug.current == $slug][0]{ title, description }`, { slug });
+
+  if (!category) {
+    return {
+      title: 'Catégorie Introuvable'
+    };
+  }
+
+  return {
+    title: category.title,
+    description: category.description || `Découvrez notre collection ${category.title}.`,
+    openGraph: {
+      title: `${category.title} | Collections Yesanda`,
+      description: category.description || `Explorez nos modèles de type ${category.title}.`,
+    },
+  };
 }
 
 export default async function CategoryPage({ params }) {
@@ -65,35 +86,7 @@ export default async function CategoryPage({ params }) {
             gap: '3rem',
           }}>
             {products.map((product) => (
-              <Link 
-                key={product._id} 
-                href={`/products/${product.slug}`}
-                style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
-              >
-                <div style={{ 
-                  position: 'relative', 
-                  aspectRatio: '3/4', 
-                  marginBottom: '1rem',
-                  backgroundColor: '#f5f5f5',
-                  overflow: 'hidden'
-                }}>
-                  {product.images?.[0] && (
-                    <Image
-                      src={urlFor(product.images[0]).width(600).url()}
-                      alt={product.name}
-                      fill
-                      style={{ objectFit: 'cover', transition: 'transform 0.3s' }}
-                      className="hover-zoom"
-                    />
-                  )}
-                </div>
-                <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>
-                  {product.name}
-                </h2>
-                <p style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>
-                  {product.price?.toLocaleString('fr-FR')} FCFA
-                </p>
-              </Link>
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
         )}

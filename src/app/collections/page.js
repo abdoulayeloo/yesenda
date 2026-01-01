@@ -2,6 +2,7 @@ import { client } from '@/sanity/client';
 import { urlFor } from '@/sanity/image';
 import Link from 'next/link';
 import Image from 'next/image';
+import ProductCard from '@/components/product/ProductCard';
 
 // Force dynamic rendering to ensure fresh data
 export const dynamic = 'force-dynamic';
@@ -63,35 +64,7 @@ export default async function CollectionsPage() {
                   gap: '2rem',
                 }}>
                   {category.products.map((product) => (
-                    <Link 
-                      key={product._id} 
-                      href={`/products/${product.slug}`}
-                      style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
-                    >
-                      <div style={{ 
-                        position: 'relative', 
-                        aspectRatio: '3/4', 
-                        marginBottom: '1rem',
-                        backgroundColor: '#f5f5f5',
-                        overflow: 'hidden'
-                      }}>
-                        {product.images?.[0] && (
-                          <Image
-                            src={urlFor(product.images[0]).width(400).url()}
-                            alt={product.name}
-                            fill
-                            style={{ objectFit: 'cover', transition: 'transform 0.3s' }}
-                            className="hover-zoom"
-                          />
-                        )}
-                      </div>
-                      <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.1rem', marginBottom: '0.3rem' }}>
-                        {product.name}
-                      </h3>
-                      <p style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>
-                        {product.price?.toLocaleString('fr-FR')} FCFA
-                      </p>
-                    </Link>
+                    <ProductCard key={product._id} product={product} />
                   ))}
                 </div>
               </section>

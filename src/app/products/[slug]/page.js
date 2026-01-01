@@ -12,6 +12,35 @@ async function getProduct(slug) {
   });
 }
 
+import ProductGallery from '@/components/product/ProductGallery';
+
+// Generate metadata for the product page
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const product = await getProduct(slug);
+
+  if (!product) {
+    return {
+      title: 'Produit Introuvable',
+      description: 'Le produit que vous cherchez n\'existe pas.'
+    };
+  }
+
+  const imageUrl = product.images?.[0] 
+    ? urlFor(product.images[0]).width(1200).height(630).url() 
+    : null;
+
+  return {
+    title: product.name,
+    description: product.description ? product.description.substring(0, 160) : `Découvrez ${product.name} chez Yesanda.`,
+    openGraph: {
+      title: `${product.name} | Yesanda`,
+      description: product.description ? product.description.substring(0, 160) : `Prix: ${product.price?.toLocaleString('fr-FR')} FCFA`,
+      images: imageUrl ? [{ url: imageUrl }] : [],
+    },
+  };
+}
+
 export default async function ProductPage({ params }) {
   const { slug } = await params; // Await params in newer Next.js versions if needed, or simply access properties
   const product = await getProduct(slug);
@@ -30,19 +59,7 @@ export default async function ProductPage({ params }) {
         gap: '4rem'
       }}>
         {/* Gallery */}
-        <div style={{ display: 'grid', gap: '1rem' }}>
-          <div style={{ position: 'relative', aspectRatio: '3/4', backgroundColor: '#f5f5f5' }}>
-            {product.images?.[0] && (
-              <Image
-                src={urlFor(product.images[0]).width(800).url()}
-                alt={product.name}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            )}
-          </div>
-          {/* Thumbnails grid could go here */}
-        </div>
+        <ProductGallery images={product.images} />
 
         {/* Info */}
         <div>

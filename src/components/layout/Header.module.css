@@ -25,6 +25,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  z-index: 1002; /* Above mobile menu overlay */
 }
 
 .nav {
@@ -54,4 +55,50 @@
 
 .navLink:hover::after {
   width: 100%;
+}
+
+.linksContainer {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.menuBtn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .menuBtn {
+    display: block;
+  }
+
+  .linksContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--color-background);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center items */
+    gap: 3rem;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+  }
+
+  .linksContainer.open {
+    transform: translateX(0);
+  }
+
+  .navLink {
+    font-size: 1.5rem; /* Larger font for mobile menu */
+  }
 }
