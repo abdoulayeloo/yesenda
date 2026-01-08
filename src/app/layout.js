@@ -14,6 +14,9 @@ const inter = Inter({
 });
 
 export const metadata = {
+  icons: {
+    icon: '/vercel.svg', // Reference from the /public directory
+  },
   title: "Yesanda - L'Art du Sur-Mesure",
   description: "Boutique de vêtements féminins et créations sur mesure à Dakar.",
 };

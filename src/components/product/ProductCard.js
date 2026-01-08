@@ -24,14 +24,14 @@ export default function ProductCard({ product }) {
   }, [isHovered, images.length]);
 
   return (
-    <Link 
+    <Link
       href={`/products/${product.slug}`}
       style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div style={{ 
-        position: 'relative', 
+      <div style={{
+        position: 'relative',
         aspectRatio: '1/1', // Square aspect ratio
         marginBottom: '1rem',
         backgroundColor: '#f5f5f5',
@@ -48,10 +48,10 @@ export default function ProductCard({ product }) {
               style={{ position: 'absolute', width: '100%', height: '100%' }}
             >
               <Image
-                src={urlFor(images[currentImageIndex]).width(600).height(600).url()}
+                src={urlFor(images[currentImageIndex]).width(700).height(700).url()}
                 alt={product.name}
                 fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'inherit', objectPosition: 'center', borderRadius: '0.5rem' }}
               />
             </motion.div>
           </AnimatePresence>
