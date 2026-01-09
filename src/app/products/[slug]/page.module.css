@@ -1,0 +1,50 @@
+.main {
+  padding: 8rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 4rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  margin-bottom: 2rem;
+}
+
+.description {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: var(--color-secondary);
+}
+
+.extraInfo {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 6rem 1.5rem; /* Reduced padding on mobile */
+  }
+
+  .container {
+    grid-template-columns: 1fr; /* Stack vertically */
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 2rem; /* Smaller title */
+  }
+}
