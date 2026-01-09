@@ -19,9 +19,9 @@ export default function AddToCart({ product }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {/* If sizes existed in schema, we'd map them here */}
-      
+
       <Button onClick={handleAdd} variant="primary" style={{ marginTop: '1rem' }}>
-        {isAdding ? 'Ajouté !' : 'Ajouter au panier'}
+        {isAdding ? <span style={{ marginRight: '0.5rem', animation: 'spin 0.5s linear infinite'}}></span> : 'Ajouter au panier'}
       </Button>
     </div>
   );

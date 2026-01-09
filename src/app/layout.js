@@ -15,10 +15,10 @@ const inter = Inter({
 
 export const metadata = {
   icons: {
-    icon: '/vercel.svg', // Reference from the /public directory
+    icon: '/vercel.svg',
   },
-  title: "Yesanda - L'Art du Sur-Mesure",
-  description: "Boutique de vêtements féminins et créations sur mesure à Dakar.",
+  title: "Yesanda - L'Art d'être élégante",
+  description: "Boutique de vêtements féminins et créations uniques.",
 };
 
 import Shell from "@/components/layout/Shell";

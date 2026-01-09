@@ -6,7 +6,7 @@ import styles from './FeaturedCollections.module.css';
 import { motion } from 'framer-motion';
 
 const CollectionCard = ({ title, description, image, link, delay }) => (
-  <motion.div 
+  <motion.div
     className={styles.card}
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -40,14 +40,14 @@ export default function FeaturedCollections() {
           <CollectionCard
             title="Sur-Mesure"
             description="L'essence même de Yesanda. Votre tenue unique, imaginée et créée pour vous."
-            image="/images/bespoke.png" // Generated image
+            image="/images/bespoke.png"
             link="/bespoke"
             delay={0}
           />
           <CollectionCard
             title="Prêt-à-Porter"
             description="Nos collections capsules : casual chic, tenues de soirée et pièces intemporelles."
-            image="/images/rtw.png" // Generated image
+            image="/images/rtw.png"
             link="/collections"
             delay={0.2}
           />

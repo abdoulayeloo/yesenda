@@ -1,7 +1,4 @@
 import { client } from '@/sanity/client';
-import { urlFor } from '@/sanity/image';
-import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ProductCard from '@/components/product/ProductCard';
 
@@ -61,10 +58,10 @@ export default async function CategoryPage({ params }) {
     <main style={{ padding: '8rem 2rem' }}>
        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h1 style={{ 
-            fontFamily: 'var(--font-heading)', 
-            fontSize: '3rem', 
-            marginBottom: '1rem' 
+          <h1 style={{
+            fontFamily: 'var(--font-heading)',
+            fontSize: '3rem',
+            marginBottom: '1rem'
           }}>
             {category.title}
           </h1>
@@ -80,9 +77,9 @@ export default async function CategoryPage({ params }) {
             Aucun produit dans cette catégorie pour le moment.
           </p>
         ) : (
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
             gap: '3rem',
           }}>
             {products.map((product) => (
